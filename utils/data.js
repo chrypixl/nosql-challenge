@@ -1,3 +1,4 @@
+//! Is this necessary for the challenge? If so, edit for social media API
 const names = [
   'Aaran',
   'Aaren',

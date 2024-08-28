@@ -1,7 +1,7 @@
 const connection = require('../config/connection');
 const { Course, Student } = require('../models');
 const { getRandomName, getRandomAssignments } = require('./data');
-
+//!Is this file necessary? If so, edit to match social media api
 connection.on('error', (err) => err);
 
 connection.once('open', async () => {

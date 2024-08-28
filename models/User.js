@@ -1,26 +1,24 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create a course model
-//! Update user object
+
 const userSchema = new Schema(
   {
     userName: {
       type: String,
       required: true,
     },
-    inPerson: {
-      type: Boolean,
-      default: true,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/],
     },
-    startDate: {
-      type: Date,
-      default: Date.now(),
-    },
-    endDate: {
-      type: Date,
-      // Sets a default value of 12 weeks from now
-      default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
-    },
+    thoughts: [{
+      type: Schema.Types.ObjectId, ref: 'thought'
+    }],
+    friends: [{
+      type: Schema.Types.ObjectId, ref: 'user'
+    }],
     students: [
       {
         type: Schema.Types.ObjectId,
@@ -31,8 +29,7 @@ const userSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
-    },
-    id: false,
+    }
   }
 );
 
